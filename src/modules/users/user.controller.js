@@ -12,44 +12,29 @@ const userStore = new Map([
   }),
 ]);
 
-// ./users
-router
-  .route("/users")
-  //POST
-  .post((req, res) => {
-    const [id, user] = mappedUser(req.body);
-    userStore.set(id, user);
-    res.status(201).json(user);
-  })
+router.post("/users", (req, res) => {
+  const [id, user] = mappedUser(req.body);
+  userStore.set(id, user);
+  res.status(201).json(user);
+});
 
-  //GET
-  .get((req, res) => {
-    res.status(200).json([...userStore.values()]);
-  });
+router.get("/users", (req, res) => {
+  res.status(200).json([...userStore.values()]);
+});
 
-// ./users/:id
-router
-  .route("/users/:id")
-  //GET
-  .get((req, res) => {
-    res.status(200).json(userStore.get(req.params.id));
-  })
+router.get("/users/:id", (req, res) => {
+  res.status(200).json(userStore.get(req.params.id));
+});
 
-  //PUT
-  .put((req, res) => {
-    const [id, user] = mappedUser(req.body, req.params.id);
-    userStore.set(id, user);
-    res.status(200).json(user);
-  })
+router.put("/users/:id", (req, res) => {
+  const [id, user] = mappedUser(req.body, req.params.id);
+  userStore.set(id, user);
+  res.status(200).json(user);
+});
 
-  //DELETE
-  .delete((req, res) => {
-    userStore.delete(req.params.id);
-    res.status(200).json(true);
-  });
-
-// user.ctrl.ts || user.controller.ts
+router.delete("/users/:id", (req, res) => {
+  userStore.delete(req.params.id);
+  res.status(200).json(true);
+});
 
 module.exports = router;
-
-// src/modules/user/user.controller.ts
