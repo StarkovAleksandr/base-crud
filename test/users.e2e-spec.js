@@ -1,7 +1,7 @@
 const request = require("supertest");
 
 const app = require("../src/app");
-const mappedUser = require("../src/modules/users/utils");
+const mappedUser = require("../src/modules/users/user.utils");
 
 describe("Users e2e", () => {
   let id;
