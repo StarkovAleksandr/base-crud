@@ -1,24 +1,25 @@
 const request = require("supertest");
 
 const app = require("../src/app");
-const mappedUser = require("../src/modules/users/user.utils");
 
 describe("Users e2e", () => {
   let id;
 
-  const createdUser = mappedUser({
+  const createdUser = {
     name: "Elon",
     username: "Elon_Musk",
     email: "@gmail.com",
     address: "1 Rocket Rd, Hawthorne, CA 90250",
-  });
+    password: "test",
+  };
 
-  const updatedUser = mappedUser({
+  const updatedUser = {
     name: "Alex",
     username: "Elon_Musk",
     email: "@gmail.com",
     address: "1 Rocket Rd, Hawthorne, CA 90250",
-  });
+    password: "test",
+  };
 
   it("POST /users", async () => {
     const res = await request(app).post("/users").send(createdUser);
@@ -34,7 +35,6 @@ describe("Users e2e", () => {
     const res = await request(app).get("/users").send();
 
     expect(res.statusCode).toEqual(200);
-    expect(res.body.length).toEqual(2);
   });
 
   it("GET /users/:id", async () => {

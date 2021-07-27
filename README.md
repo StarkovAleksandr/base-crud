@@ -5,7 +5,8 @@ interface User {
     name: string;
     username: string;
     email: string;
-    address: string
+    address: string;
+    password: string;
 }
 
 POST /users - Create user. Result: User
