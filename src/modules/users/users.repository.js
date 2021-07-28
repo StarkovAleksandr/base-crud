@@ -5,8 +5,8 @@ class UsersRepository {
     this.map = new Map();
   }
 
-  createOrUpdateUser(currentUser, currentId) {
-    const [id, user] = mappedUser(currentUser, currentId);
+  createOrUpdateUser(user, id) {
+    const [id, user] = mappedUser(user, id);
     this.map.set(id, user);
     return user;
   }

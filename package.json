@@ -4,8 +4,8 @@
   "description": "CRUD users",
   "main": "index.js",
   "scripts": {
-    "start": "node src/main.js",
-    "dev": "nodemon src/main.js",
+    "start": "cross-env NODE_ENV=prod node src/main.js",
+    "dev": "cross-env NODE_ENV=dev nodemon src/main.js",
     "test": "jest --config ./test/jest.e2e.json"
   },
   "keywords": [
@@ -21,6 +21,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.12"
   }
 }
